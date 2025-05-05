@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AutoTrader Dashboard</title>
+  <link rel="stylesheet"
+        href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    h1 { text-align: center; }
+    .panel { border: 1px solid #ccc; padding: 1rem; border-radius: 5px;
+             width: 200px; margin: 1rem auto; text-align: center; }
+    .panel .value { font-size: 2rem; color: green; }
+  </style>
+</head>
+<body>
+  <h1>AutoTrader Dashboard</h1>
+  <div class="panel">
+    <div>Last ORB Signal</div>
+    <div class="value" id="orb-signal">–</div>
+  </div>
+
+  <button id="run-orb">Run 15m ORB Now</button>
+  <pre id="orb-result"></pre>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $('#run-orb').click(async () => {
+      $('#orb-result').text("⏳ running…");
+      try {
+        const res = await fetch('/api/execute-orb15', { method:'POST' });
+        const j = await res.json();
+        $('#orb-signal').text(j.detail.signal || 'none');
+        $('#orb-result').text(JSON.stringify(j.detail, null,2));
+      } catch(e) {
+        $('#orb-result').text("❌ "+e);
+      }
+    });
+  </script>
+</body>
+</html>
