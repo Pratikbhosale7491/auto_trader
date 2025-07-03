@@ -35,7 +35,48 @@ This project was built to simulate algorithmic trading using technical indicator
 ├── Dockerfile # Containerization setup
 └── README.md # Project documentation
 
+## ⚙️ Setup Instructions
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/your-username/auto_trader.git
+cd auto_trader
+
+2. Install dependencies
+
+pip install -r requirements.txt
+
+3. Configure your API keys
+Edit the config.json or .env file to include:
+
+API key
+
+Secret key
+
+Trade symbols
+
+Buy/sell threshold values
+
+4. Run the bot
  
+python main.py
+
+5. Run with Docker (optional)
+ 
+docker build -t auto-trader .
+docker run -d auto-trader
+
+📬 Alerts (Optional)
+You can integrate with Telegram or Email for trade notifications.
+
+📌 Disclaimer
+This project is for educational purposes only. It does not execute real money trades unless integrated with a live trading API. Use with caution.
+
+
+🧑‍💻 Author
+Pratik Bhosale
+LinkedIn :- http://www.linkedin.com/in/pratikbhosale00
+
 
   
 
